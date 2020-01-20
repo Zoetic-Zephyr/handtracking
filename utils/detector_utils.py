@@ -57,6 +57,19 @@ def draw_box_on_image(num_hands_detect, score_thresh, scores, boxes, im_width, i
                                           boxes[i][0] * im_height, boxes[i][2] * im_height)
             p1 = (int(left), int(top))
             p2 = (int(right), int(bottom))
+                        
+            # * calculate position of center point
+            cx = (left + right)/2
+            cy = (top + bottom)/2
+            cent_pt = (int(cx), int(cy))
+            cent_pt_str = str(int(cx)) + "," + str(int(cy))
+            
+            cv2.circle(image_np, cent_pt, 10, (0, 0, 255), -1)
+            cv2.putText(image_np, cent_pt_str, (20, 70),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+            
+            print(cent_pt_str)
+
             cv2.rectangle(image_np, p1, p2, (77, 255, 9), 3, 1)
 
 
